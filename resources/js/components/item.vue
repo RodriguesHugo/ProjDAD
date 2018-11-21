@@ -56,64 +56,11 @@
         	}
 		},
     methods: {
-        editUser: function(user){
-            this.editingUser = true;
-            this.currentUser = Object.assign({},user);
-
-
-         
-        },
-        deleteUser: function(user, index){
-            axios.delete('/api/users/'+user.id).then(response=>{
-                this.successMessage = 'User deleted successfuly';
-                this.showSuccess = true;
-
-                this.users.splice(index, 1);
-            }).catch(error=>{
-                this.failMessage = 'User delition error';
-                this.showFailure = true;
-            })
-         
-        },
-        saveUser: function(){
-            const user = this.currentUser;
-            axios.put('api/users/'+ user.id, user).then(response =>{
-                this.successMessage = 'User updated';
-                this.showSuccess = true;
-                this.showFailure = false;
-                this.failMessage = "";
-
-                this.users.forEach(u => {
-                        if(u.id == user.id){
-                            Object.assign(u, response.data.data);
-
-                        }
-                    })
-                setTimeout(() =>{
-                    this.showFailure = false;
-                    this.showSuccess = false;
-                },2000)
-            }).catch(error =>{
-                this.failMessage = 'User not updated';
-                this.showFailure = true;
-                this.showSuccess = false;
-                this.successMessage = "";
-            })
-         
-        },
-        cancelEdit: function(){
-            this.editingUser = false;
-         
-        }
+        
     },
     mounted() {
-        axios.get('/api/users').then(response => {
-            this.users = response.data.data;
-        })
-        axios.get('/api/departments').then(response => {
-            this.departments = response.data.data;
-        })
+            
         
-    }
+        }
 	}
 </script>
