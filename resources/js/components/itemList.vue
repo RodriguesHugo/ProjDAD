@@ -10,26 +10,30 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(item,index) in items" :key="user.id">
+            <tr v-for="(item,index) in items" :key="item.id">
                 <td>{{item.name}}</td>
                 <td>{{item.type}}</td>
                 <td>{{item.description}}</td>
                 <td>{{item.price}}</td>
-                <td>photo_place</td>
+                <td>{{item.photo_url}}</td>
             </tr>
         </tbody>
     </table>
 </template>
 <script>
 module.exports = {
-    props: ["items"],
     data: function(){
         return {
-
+            items:"",
         }
     },
     methods: {
         
+    },
+    mounted() {
+        axios.get('/api/items').then(response => {
+            this.items = response.data.data;
+        })
     }
 }
 </script>

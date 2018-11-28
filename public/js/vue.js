@@ -49902,7 +49902,7 @@ exports = module.exports = __webpack_require__(43)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -50387,11 +50387,19 @@ module.exports = function normalizeComponent (
 //
 
 module.exports = {
-    props: ["items"],
     data: function data() {
-        return {};
+        return {
+            items: ""
+        };
     },
-    methods: {}
+    methods: {},
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/api/items').then(function (response) {
+            _this.items = response.data.data;
+        });
+    }
 };
 
 /***/ }),
@@ -50408,7 +50416,7 @@ var render = function() {
     _c(
       "tbody",
       _vm._l(_vm.items, function(item, index) {
-        return _c("tr", { key: _vm.user.id }, [
+        return _c("tr", { key: item.id }, [
           _c("td", [_vm._v(_vm._s(item.name))]),
           _vm._v(" "),
           _c("td", [_vm._v(_vm._s(item.type))]),
@@ -50417,7 +50425,7 @@ var render = function() {
           _vm._v(" "),
           _c("td", [_vm._v(_vm._s(item.price))]),
           _vm._v(" "),
-          _c("td", [_vm._v("photo_place")])
+          _c("td", [_vm._v(_vm._s(item.photo_url))])
         ])
       })
     )

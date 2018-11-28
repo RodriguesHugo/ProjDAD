@@ -59,8 +59,9 @@
         
     },
     mounted() {
-            
-        
-        }
+        axios.get('/api/items').then(response => {
+            this.items = response.data.data;
+        })
+    }
 	}
 </script>
