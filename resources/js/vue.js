@@ -11,7 +11,6 @@ require('./bootstrap');
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
 import store from './stores/global-store';
-import Paginate from 'vuejs-paginate';
 
 Vue.use(VueRouter);
 
@@ -19,7 +18,6 @@ const itemList = Vue.component('item-list',require('./components/itemList.vue'))
 const login = Vue.component('login', require('./components/login.vue'));
 const logout = Vue.component('logout', require('./components/logout.vue'));
 const registerAccount = Vue.component('registerAccount', require('./components/registerAccount.vue'));
-Vue.component('paginate', Paginate);
 
 
 const routes = [

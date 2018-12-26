@@ -1,5 +1,11 @@
 <template>
     <div>
+        <vuetable ref="vuetable"
+          api-url="http://projeto.dad/api/items"
+          :fields="fields"
+          data-path="data"
+          pagination-path=""></vuetable>
+          <div></div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -20,35 +26,30 @@
                 </tr>
             </tbody>
         </table>
-        <paginate
-    v-model="page"
-    :page-count="10"
-    :page-range="3"
-    :margin-pages="2"
-    :prev-text="'Prev'"
-    :next-text="'Next'"
-    :container-class="'pagination'"
-    :page-class="'page-item'">
-  </paginate>
     </div>
 </template>
 <script>
-module.exports = {
-    data: function() {
-        return {
-            items: "",
-            page: 10,
-        }
-    },
-    methods: {
+import Vuetable from 'vuetable-2';
 
-    },
-    mounted() {
-        axios.get('/api/items').then(response => {
-            this.items = response.data.data;
-        })
+    export default {
+
+        data: function() {
+            return {
+                items: "",
+                fields: []
+            }
+        },
+        methods: {
+
+        },
+        mounted() {
+            axios.get('/api/items').then(response => {
+                this.items = response.data.data;
+
+                this.lastPage = response.data.meta.last_page;
+            })
+        }
     }
-}
 
 </script>
 <style></style>
