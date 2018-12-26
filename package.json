@@ -22,6 +22,7 @@
     "dependencies": {
         "pool": "^0.4.1",
         "vue-router": "^3.0.2",
+        "vuejs-paginate": "^2.1.0",
         "vuelidate": "^0.7.4",
         "vuex": "^3.0.1"
     }

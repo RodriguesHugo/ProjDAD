@@ -4,6 +4,8 @@
 
 @section('content')
 <router-link to="/menu">Menu</router-link>
+<router-link to="/login">Login</router-link>
+<router-link to="/logout">Logout</router-link>
 <!-- <router-link to="/list">List</router-link>
  -->
 <router-view></router-view>

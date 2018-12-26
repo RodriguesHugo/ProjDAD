@@ -10,18 +10,22 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
-//const VuRouter = require('vue-router');
+import store from './stores/global-store';
+import Paginate from 'vuejs-paginate';
+
 Vue.use(VueRouter);
 
-
-//const userListComponent = Vue.component('user-list',require('./components/userList.vue'));
 const itemList = Vue.component('item-list',require('./components/itemList.vue'));
-
+const login = Vue.component('login', require('./components/login.vue'));
+const logout = Vue.component('logout', require('./components/logout.vue'));
+Vue.component('paginate', Paginate);
 
 
 const routes = [
     {path:'/menu', component: itemList},
-    //{path:'/list', component: userListComponent},
+    {path:'/login', component: login},
+    {path:'/logout', component: logout},
+
 ];
 
 const router = new VueRouter({
@@ -31,5 +35,6 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',//indica o elemento que queremos que o vue substitua, onde começa tree DOM do vue
-    router
+    router,
+    store
 });
