@@ -16,21 +16,23 @@
                     <td>{{item.type}}</td>
                     <td>{{item.description}}</td>
                     <td>{{item.price}}</td>
-                    <td>{{item.photo_url}}</td>
+                    <td><img :src="'storage/items/' + item.photo_url"  width="50" height="50"></td>
                 </tr>
             </tbody>
         </table>
+        <!-- <paginate :page-count="10" :container-class="pagination" :prev-text="prev" :next-text="next" :click-handler="clickCallback">
+        </paginate> -->
     </div>
 </template>
 <script>
 module.exports = {
-    data: function(){
+    data: function() {
         return {
-            items:"",
+            items: "",
         }
     },
     methods: {
-        
+
     },
     mounted() {
         axios.get('/api/items').then(response => {
@@ -38,5 +40,6 @@ module.exports = {
         })
     }
 }
+
 </script>
 <style></style>
