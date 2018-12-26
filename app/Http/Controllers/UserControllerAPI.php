@@ -79,6 +79,20 @@ class UserControllerAPI extends Controller
         return response()->json($totalEmail == 0);
     } */
 
+    public function registerAccount(Request $request) {
+        $user = new User();
+        $user->fill(array_merge($request->all(), ['password' => '123']));
+        $user->password = Hash::make($user->password);
+
+        $user->save();
+
+        event(new Registered($user));
+        //Mail::to($user->email)->send(new EmailSender($user->id));
+
+       // return response()->json(new UserResource($user), 201);
+        return new UserResource($user);
+    }
+
     public function myProfile(Request $request)
     {
         return new UserResource($request->user());

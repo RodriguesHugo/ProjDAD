@@ -20,8 +20,16 @@
                 </tr>
             </tbody>
         </table>
-        <!-- <paginate :page-count="10" :container-class="pagination" :prev-text="prev" :next-text="next" :click-handler="clickCallback">
-        </paginate> -->
+        <paginate
+    v-model="page"
+    :page-count="10"
+    :page-range="3"
+    :margin-pages="2"
+    :prev-text="'Prev'"
+    :next-text="'Next'"
+    :container-class="'pagination'"
+    :page-class="'page-item'">
+  </paginate>
     </div>
 </template>
 <script>
@@ -29,6 +37,7 @@ module.exports = {
     data: function() {
         return {
             items: "",
+            page: 10,
         }
     },
     methods: {
