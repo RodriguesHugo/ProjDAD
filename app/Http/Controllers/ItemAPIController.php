@@ -10,6 +10,6 @@ use App\Item;
 class ItemAPIController extends Controller
 {
     public function index(){
-    	return ItemResource::collection(Item::paginate(10));
+    	return ItemResource::collection(Item::all());
     }
 }
