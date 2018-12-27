@@ -17,14 +17,16 @@ Vue.use(VueRouter);
 const itemList = Vue.component('item-list',require('./components/itemList.vue'));
 const login = Vue.component('login', require('./components/login.vue'));
 const logout = Vue.component('logout', require('./components/logout.vue'));
-const registerAccount = Vue.component('registerAccount', require('./components/registerAccount.vue'));
+const registerAccount = Vue.component('registerAccount', require('./components/workers/registerAccount.vue'));
+const confirmAccount = Vue.component('confirm-account', require('./components/workers/confirmAccount.vue'));
 
 
 const routes = [
     {path:'/menu', component: itemList},
     {path:'/login', component: login},
     {path:'/logout', component: logout},
-    {path:'/registerAccount', component: registerAccount},
+    {path:'/workers/registerAccount', component: registerAccount},
+    {path:'/workers/confirmAccount', component: confirmAccount},
 
 ];
 
