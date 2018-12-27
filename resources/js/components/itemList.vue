@@ -1,11 +1,5 @@
 <template>
     <div>
-        <vuetable ref="vuetable"
-          api-url="http://projeto.dad/api/items"
-          :fields="fields"
-          data-path="data"
-          pagination-path=""></vuetable>
-          <div></div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -29,14 +23,11 @@
     </div>
 </template>
 <script>
-import Vuetable from 'vuetable-2';
-
     export default {
 
         data: function() {
             return {
                 items: "",
-                fields: []
             }
         },
         methods: {
@@ -45,8 +36,6 @@ import Vuetable from 'vuetable-2';
         mounted() {
             axios.get('/api/items').then(response => {
                 this.items = response.data.data;
-
-                this.lastPage = response.data.meta.last_page;
             })
         }
     }
