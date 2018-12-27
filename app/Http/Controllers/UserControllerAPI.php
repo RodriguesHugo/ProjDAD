@@ -80,17 +80,17 @@ class UserControllerAPI extends Controller
     } */
 
     public function registerAccount(Request $request) {
+        $request->validate([
+                'name' => 'required|min:3|regex:/^[A-Za-záàâãéèêíóôõúçÁÀÂÃÉÈÍÓÔÕÚÇ ]+$/',
+                'email' => 'required|email|unique:users,email',
+                'username' => 'required|unique:users,username|min:3|regex:/[A-Za-z0-9]+$/',
+            ]);
+
         $user = new User();
-        $user->fill(array_merge($request->all(), ['password' => '123']));
+        $user->fill(array_merge($request->all(), ['password' => 'secret']));
         $user->password = Hash::make($user->password);
 
         $user->save();
-
-        event(new Registered($user));
-        //Mail::to($user->email)->send(new EmailSender($user->id));
-
-       // return response()->json(new UserResource($user), 201);
-        return new UserResource($user);
     }
 
     public function myProfile(Request $request)

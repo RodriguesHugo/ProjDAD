@@ -14,6 +14,10 @@
                 <label for="inputEmail">Email</label>
                 <input type="email" class="form-control" v-model="email" name="email" id="inputEmail" placeholder="Email address" />
             </div>
+            <div class="form-group">
+                <label for="inputUsername">Username</label>
+                <input type="username" class="form-control" v-model="username" name="username" id="inputUsername" placeholder="Username" />
+            </div>
             <div>
                 <label for="selectType">Type of worker</label>
                 <select v-model="typeSelected" id="selectType" name="selectType" class="form-control">
@@ -46,26 +50,24 @@ export default {
     methods: {
         registerAccount() {
             this.showMessage = false;
-
+            this.showErrors = false;
             const formData = new FormData();
-
             formData.append('name', this.name);
             formData.append('email', this.email);
             formData.append('type', this.typeSelected);
-            formData.append('username', 'gay');
-
+            formData.append('username', this.username);
             axios.post('api/registerAccount', formData)
                 .then(response => {
-                    this.$store.commit('setUser', response.data.data);
+                    console.log('qwert');
                     this.typeofmsg = "alert-success";
-                    this.message = "User registered sucessfuly";
                     this.showMessage = true;
+                    this.message = "User registered sucessfuly";
                 })
                 .catch(error => {
-                    this.$store.commit('clearUserAndToken');
                     this.typeofmsg = "alert-danger";
-                    this.message = "Invalid credentials";
                     this.showMessage = true;
+                    this.message = "Impossible add user";
+                    
                     console.log(error);
                 })
         }
