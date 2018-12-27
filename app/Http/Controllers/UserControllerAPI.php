@@ -93,6 +93,19 @@ class UserControllerAPI extends Controller
         $user->save();
     }
 
+     public function editAccount(Request $request, $id)
+    {
+        // $request->validate([
+        //         'name' => 'required|min:3|regex:/^[A-Za-záàâãéèêíóôõúçÁÀÂÃÉÈÍÓÔÕÚÇ ]+$/',
+        //         'email' => 'required|email|unique:users,email,'.$id,
+        //         'age' => 'integer|between:18,75'
+        //     ]);
+        $user = User::findOrFail($id);
+        $user->editAccount($request->all());
+        return new UserResource($user);
+    }
+
+
     public function myProfile(Request $request)
     {
         return new UserResource($request->user());
