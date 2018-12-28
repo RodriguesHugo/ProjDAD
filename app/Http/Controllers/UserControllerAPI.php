@@ -33,7 +33,7 @@ class UserControllerAPI extends Controller
     {
         $request->validate([
                 'name' => 'required|min:3|regex:/^[A-Za-záàâãéèêíóôõúçÁÀÂÃÉÈÍÓÔÕÚÇ ]+$/',
-                'username' => 'required|unique:users,username|min:2|regex:/[A-Za-z0-9]+$/',
+                'username' => 'required|unique:users,username,'.$id.'|min:2|regex:/[A-Za-z0-9]+$/',
         ]);
         $user = User::findOrFail($id);
         $user->name = $request->name;
