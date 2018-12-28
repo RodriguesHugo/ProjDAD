@@ -19,6 +19,7 @@ const login = Vue.component('login', require('./components/login.vue'));
 const logout = Vue.component('logout', require('./components/logout.vue'));
 const registerAccount = Vue.component('registerAccount', require('./components/workers/registerAccount.vue'));
 const confirmAccount = Vue.component('confirm-account', require('./components/workers/confirmAccount.vue'));
+const editAccount = Vue.component('edit-account', require('./components/workers/editAccount.vue'));
 
 
 const routes = [
@@ -27,6 +28,7 @@ const routes = [
     {path:'/logout', component: logout},
     {path:'/workers/registerAccount', component: registerAccount},
     {path:'/workers/confirmAccount', component: confirmAccount},
+    {path:'/workers/editAccount', component: editAccount},
 
 ];
 

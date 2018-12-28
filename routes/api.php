@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('workers/editAccount/{id}', 'UserControllerAPI@editAccount');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -22,4 +23,5 @@ Route::post('login', 'LoginControllerAPI@login')->name('login');
 Route::middleware('auth:api')->post('logout', 'LoginControllerAPI@logout');
 
 Route::middleware(['auth:api','manager'])->post('registerAccount', 'UserControllerAPI@registerAccount');
+
 //Route::patch('users/confirmRegistration/{id}', 'UserControllerAPI@confirmRegistration');
