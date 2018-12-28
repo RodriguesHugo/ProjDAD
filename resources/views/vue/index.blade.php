@@ -8,6 +8,9 @@
 <router-link to="/logout" v-show="this.$store.state.user != null">Logout</router-link>
 <router-link to="/workers/registerAccount" v-show="this.$store.state.user != null && this.$store.state.user.type == 'manager'">Register</router-link>
 <router-link to="/workers/confirmAccount">Confirm Account</router-link>
+<p class="pull-right">
+		@{{this.$store.state.user != null ? this.$store.state.user.username: '' }}
+</p>
 
 <router-view></router-view>
 @endsection

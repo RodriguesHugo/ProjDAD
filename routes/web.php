@@ -12,3 +12,5 @@
 */
 
 Route::get('/','VueController@index');
+// Email related routes
+Route::get('mail/send', 'MailController@send');
