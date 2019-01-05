@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\StoreUserRequest;
 use Hash;
+use Carbon\Carbon;
+use Response;
 
 class UserControllerAPI extends Controller
 {
@@ -47,4 +49,31 @@ class UserControllerAPI extends Controller
     {
         return new UserResource($request->user());
     }
+
+    public function shiftInformation(Request $request, $id)
+    {
+        $user=User::findOrFail($id);
+
+        return new UserResource($user);
+    }
+    public function toggleShift(Request $request, $id)
+    {
+        $data=Carbon::now();
+        $user=User::findOrFail($id);
+        if($user->shift_active == 1){
+            $user->shift_active = 0;
+            $user->last_shift_end = $data->format('Y-m-d H:i:s');
+        }elseif($user->shift_active == 0){
+            $user->shift_active = 1;
+            $user->last_shift_start = $data->format('Y-m-d H:i:s');
+        }else{
+            return Response::json([
+                'error' => 'shit active value is wrong'
+            ], 422);
+        }
+        $user->save();
+
+         return new UserResource($user);
+    }
+
 }

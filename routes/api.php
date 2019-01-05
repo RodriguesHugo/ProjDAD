@@ -23,5 +23,7 @@ Route::post('login', 'LoginControllerAPI@login')->name('login');
 Route::middleware('auth:api')->post('logout', 'LoginControllerAPI@logout');
 
 Route::middleware(['auth:api','manager'])->post('registerAccount', 'UserControllerAPI@registerAccount');
+Route::get('/users/shiftInfo/{id}', 'UserControllerAPI@shiftInformation');
+Route::get('/users/toggleShift/{id}', 'UserControllerAPI@toggleShift');
 
 //Route::patch('users/confirmRegistration/{id}', 'UserControllerAPI@confirmRegistration');

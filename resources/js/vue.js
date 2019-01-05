@@ -11,8 +11,8 @@ require('./bootstrap');
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
 import store from './stores/global-store';
-
 Vue.use(VueRouter);
+
 
 const itemList = Vue.component('item-list',require('./components/itemList.vue'));
 const login = Vue.component('login', require('./components/login.vue'));
@@ -20,6 +20,7 @@ const logout = Vue.component('logout', require('./components/logout.vue'));
 const registerAccount = Vue.component('registerAccount', require('./components/workers/registerAccount.vue'));
 const confirmAccount = Vue.component('confirm-account', require('./components/workers/confirmAccount.vue'));
 const editAccount = Vue.component('edit-account', require('./components/workers/editAccount.vue'));
+const startShift = Vue.component('start-shift', require('./components/workers/startEndShift.vue'));
 
 
 const routes = [

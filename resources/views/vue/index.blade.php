@@ -13,8 +13,17 @@
 		@{{this.$store.state.user != null ? this.$store.state.user.username: '' }}
 </p>
 
+<div>
+	<start-shift  v-if="this.$store.state.user"></start-shift>
+</div>	
+
 <router-view></router-view>
+
+	
+</div>
 @endsection
 @section('pagescript')
 <script src="js/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 @stop  
+
